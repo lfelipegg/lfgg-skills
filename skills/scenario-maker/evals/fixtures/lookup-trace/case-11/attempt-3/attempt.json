@@ -1,0 +1,84 @@
+{
+  "case_id": "case-11",
+  "attempt": 3,
+  "revision": "5fcc3d0eded83c6a9aaf472a1dc8d5ce24011d9d",
+  "started_at": "2026-09-20T15:11:09.460627+00:00",
+  "elapsed_seconds": 60.067,
+  "command": [
+    "omp",
+    "--cwd",
+    "/tmp/scenario-maker-eval-88ibfaoi/case-11/attempt-3",
+    "--print",
+    "--mode",
+    "json",
+    "--model",
+    "openai-codex/gpt-6-astra",
+    "--thinking",
+    "high",
+    "--no-session",
+    "--no-title",
+    "--no-prewalk",
+    "--no-skills",
+    "--no-rules",
+    "--no-extensions",
+    "--no-lsp",
+    "--no-pty",
+    "--tools",
+    "read,grep,glob,bash,write",
+    "--approval-mode",
+    "yolo",
+    "--config",
+    "/home/mothmanex/.agents/skills/scenario-maker/evals/omp-config.json",
+    "--system-prompt",
+    "/home/mothmanex/.agents/skills/scenario-maker/evals/generator-system.txt",
+    "--extension",
+    "/home/mothmanex/.agents/skills/scenario-maker/evals/capture.ts",
+    "--max-time",
+    "300s",
+    "Use the explicitly selected Scenario Maker skill in ./selected-skill/SKILL.md.\n\nWrite one positive prompt for Illustrious in explicitly requested Danbooru Version for one adult woman with grey hair, green eyes, a black turtleneck, and white gloves, standing in a library. Before answering, use the existing local Danbooru lookup script to confirm the canonical spelling `grey_hair`; do not read raw CSV files and do not add related candidates. Return only the comma-separated positive prompt, with no negative prompt, notes, or explanation."
+  ],
+  "cwd": "/tmp/scenario-maker-eval-88ibfaoi/case-11/attempt-3",
+  "execution": {
+    "status": "completed",
+    "exit_code": 0,
+    "error": null,
+    "model_errors": [],
+    "malformed_trace_lines": []
+  },
+  "raw": {
+    "output": "output.txt",
+    "partial_output": null,
+    "trace": "trace.jsonl",
+    "stderr": "stderr.txt",
+    "context": "context.jsonl"
+  },
+  "trace_complete": true,
+  "artifacts": [],
+  "observed_context": [
+    {
+      "type": "eval_context",
+      "systemPrompt": "You are a prompt-writing assistant executing the explicitly selected Scenario Maker skill in ./selected-skill/SKILL.md. Read that file and only its applicable references. Resolve its reference and script paths relative to ./selected-skill, not an installed skill. Do not discover or load other skills, repository instructions, past sessions, evaluator files, or web sources.\n\nOnly local read, grep, glob, bash, and write tools are available. Use them for the selected skill's references, local lookup/scripts, supplied fixtures, and requested workspace-local text exports. Keep writes within this fresh workspace. Do not edit the selected skill, execute image/video generation or frame extraction, delegate, switch models, access the network, or inspect credentials. This is prompt writing, not generation. If clarification is necessary, ask in your final response; this non-interactive run cannot receive an answer.\n\nApply the selected skill to the user's request. Do not discuss evaluation or scoring. The workspace starts with no prior conversation or generated outputs.\n",
+      "cwd": "/tmp/scenario-maker-eval-88ibfaoi/case-11/attempt-3",
+      "model": {
+        "provider": "openai-codex",
+        "id": "gpt-6-astra",
+        "name": "GPT-6-Astra"
+      },
+      "thinking": "high",
+      "tools": [
+        "read",
+        "grep",
+        "glob",
+        "bash",
+        "write"
+      ]
+    }
+  ],
+  "raw_checksums": {
+    "request.txt": "d7c185f366241ae7a663efbf348a1125ba18fbf9107eebd7a7a735252d2275c0",
+    "output.txt": "ebf1ab9bdd8cecb5b62551d29ac58d11ec90ff4b05bccecbd43bf2c3be632bd9",
+    "context.jsonl": "0d39961132d1538c55a4766d2ba1d73278923ce6ff49425902d107e86401689f",
+    "trace.jsonl": "78fca9fc26da399c7741e72de5baa3072afcbbc44502796f406cf3b4569573b1",
+    "stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}

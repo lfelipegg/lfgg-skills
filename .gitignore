@@ -1,0 +1,8 @@
+node_modules/
+
+# Generated evaluation evidence stays out of the distributable skills collection.
+/skills/scenario-maker/evals/baseline/
+/skills/scenario-maker/evals/capture-checks/
+/skills/scenario-maker/evals/comparisons/
+/skills/scenario-maker/evals/results/
+/skills/scenario-maker/evals/reviews/

@@ -1,0 +1,10 @@
+__pycache__/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+*.pyc
+docs/danbooru_tags/*.sqlite
+docs/danbooru_tags/*.sqlite-*
+docs/danbooru_tags/*.sqlite.tmp
+wildcards/*
+!wildcards/full-prompts.txt

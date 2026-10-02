@@ -1,0 +1,4 @@
+interface:
+  display_name: "Scenario Maker"
+  short_description: "Build model-aware image/video prompts and wildcards"
+  default_prompt: "Use $scenario-maker to build a Pony prompt package and a matching SDXL variant."
