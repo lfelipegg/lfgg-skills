@@ -10,10 +10,11 @@ resources. There are no submodules or nested Git repositories.
 | --- | --- |
 | [scenario-maker](skills/scenario-maker/README.md) | Write, refine, and batch model-aware prompts for AI image and video workflows. Writes prompts; does not generate media. |
 | [agent-builder](skills/agent-builder/README.md) | Create, update, and audit repository agent instructions such as `AGENTS.md`, and plan subagents. |
+| [next-steps](skills/next-steps/README.md) | Save the current chat's progress, decisions, and remaining work to `docs/next-steps.md` with a prompt for continuing in a new chat. |
 
 ## Install
 
-The [skills CLI](https://github.com/vercel-labs/skills) discovers both skills and
+The [skills CLI](https://github.com/vercel-labs/skills) discovers the bundled skills and
 lets you choose which skills and agents to install them for. It requires Node.js
 and npm; Git is needed when installing from a Git repository.
 
@@ -23,12 +24,13 @@ From this collection's root, list skills without installing anything:
 npx skills@latest add . --list
 ```
 
-Install one skill or both from the local checkout:
+Install one skill or several from the local checkout:
 
 ```bash
 npx skills@latest add . --skill scenario-maker
 npx skills@latest add . --skill agent-builder
-npx skills@latest add . --skill scenario-maker agent-builder
+npx skills@latest add . --skill next-steps
+npx skills@latest add . --skill scenario-maker agent-builder next-steps
 ```
 
 These commands install into the current project by default. To install into a
@@ -42,7 +44,7 @@ commands are:
 
 ```bash
 npx skills@latest add lfelipegg/lfgg-skills --list
-npx skills@latest add lfelipegg/lfgg-skills --skill scenario-maker agent-builder
+npx skills@latest add lfelipegg/lfgg-skills --skill scenario-maker agent-builder next-steps
 ```
 
 The remote commands require that repository to exist and contain these files.
@@ -66,6 +68,9 @@ lfgg-skills/
     │   ├── references/
     │   ├── examples/
     │   └── tests/
+    ├── next-steps/
+    │   ├── SKILL.md
+    │   └── CONTEXT.md
     └── scenario-maker/
         ├── SKILL.md
         ├── references/
@@ -101,6 +106,11 @@ python3 skills/scenario-maker/scripts/character_generator.py --seed 7 --count 1 
 For substantive Agent Builder workflow changes, use its
 [behavioral scenarios](skills/agent-builder/tests/scenarios.md). They are a manual
 acceptance rubric, not an executable automated test suite.
+
+For Next Steps workflow changes, use its
+[behavioral checks](skills/next-steps/README.md#behavioral-checks) in disposable
+projects. Inspect the generated handoff and continuation prompt; installer
+discovery alone does not establish correct handoff behavior.
 
 ### Evaluation tooling
 
