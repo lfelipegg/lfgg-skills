@@ -4,7 +4,7 @@ This profile supplies compatible defaults only after the scene and output have b
 
 ## Identity and Aliases
 
-- Unqualified `local Krea 2` uses guidance shared by the open RAW and Turbo checkpoints without silently selecting either one.
+- Case-insensitive aliases `Krea 2` and `local Krea 2` use guidance shared by the open RAW and Turbo checkpoints without silently selecting either one.
 - `Krea 2 RAW`, `krea/Krea-2-Raw`, and reference CLI identifier `oss_raw` identify the open undistilled base checkpoint. `Krea 2 Turbo`, `krea/Krea-2-Turbo`, and `oss_turbo` identify the open eight-step distilled checkpoint.
 - The open RAW/Turbo checkpoints are not aliases for hosted **Medium**, **Large**, or **Medium Turbo**. Do not infer a one-to-one mapping or transfer hosted-only controls to a local workflow.
 - Other Krea-branded models are not Krea 2 aliases. Clarify identity only when it materially affects the requested adaptation, syntax, or capability.

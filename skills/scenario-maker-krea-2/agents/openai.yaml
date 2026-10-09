@@ -1,0 +1,4 @@
+interface:
+  display_name: "Scenario Maker — Krea 2"
+  short_description: "Krea 2 prompts, analysis, variants, and wildcards"
+  default_prompt: "Use $scenario-maker-krea-2 to adapt a blue mug on a white shelf for local Krea 2 RAW. Preserve all supplied facts and return prompt only."

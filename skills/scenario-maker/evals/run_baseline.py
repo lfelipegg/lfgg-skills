@@ -76,22 +76,22 @@ def extract_baseline(snapshot, scratch, baseline_repo):
     return source_manifest(snapshot)
 
 
-def worktree_source_files():
-    files = [ROOT / "SKILL.md"]
-    for directory in (ROOT / "references", ROOT / "scripts"):
+def worktree_source_files(root):
+    files = [root / "SKILL.md"]
+    for directory in (root / "references", root / "scripts"):
         files.extend(
             path
             for path in directory.rglob("*")
             if path.is_file() and "__pycache__" not in path.parts and path.suffix not in {".pyc", ".pyo"}
         )
-    files.extend(path for path in (ROOT / "docs" / "danbooru_tags").glob("*.csv") if path.is_file())
+    files.extend(path for path in (root / "docs" / "danbooru_tags").glob("*.csv") if path.is_file())
     return sorted(set(files))
 
 
-def retain_worktree_snapshot(snapshot):
+def retain_worktree_snapshot(snapshot, root):
     snapshot.mkdir(parents=True)
-    for source in worktree_source_files():
-        relative = source.relative_to(ROOT)
+    for source in worktree_source_files(root):
+        relative = source.relative_to(root)
         target = snapshot / relative
         target.parent.mkdir(parents=True, exist_ok=True)
         shutil.copyfile(source, target)
@@ -467,7 +467,7 @@ def main():
             return
 
         retained_candidate = destination / "candidate-source-snapshot"
-        candidate_files, candidate_hash = retain_worktree_snapshot(retained_candidate)
+        candidate_files, candidate_hash = retain_worktree_snapshot(retained_candidate, ROOT)
         candidate_revision = f"worktree-sha256-{candidate_hash}"
         baseline_destination = destination / "baseline"
         candidate_destination = destination / "candidate"

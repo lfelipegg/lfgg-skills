@@ -4,6 +4,8 @@ This profile supplies compatible prompt-authoring defaults only after the task, 
 
 ## Identity, Routes, and Deliverable
 
+Recognized case-insensitive aliases are `MiniMax H3`, `H3`, `H3-Base-Ref2VA`, `H3 Ref2VA`, `MiniMaxH3ReferenceToVideo`, `H3-Base-FL2VA`, `H3 FL2VA`, and `MiniMaxH3ImageToVideo`. Bare `MiniMax H3` or `H3`, including explicit specialist invocation, supplies the family only: it does not choose a task, checkpoint, native route, or hosted/local interface. Context may resolve an unambiguous local target; clarify consequential ambiguity rather than guessing a route.
+
 Supported prompt-writing routes are limited to the ordinary native local ComfyUI paths below:
 
 - **H3 Ref2VA — reference video generation/editing:** `H3-Base-Ref2VA` through `MiniMaxH3ReferenceToVideo`.
@@ -33,6 +35,22 @@ The local route, permission, exact-text, output-format, length, unspecified-audi
 - Default video intent is one shot when no relevant delegation exists. Preserve explicitly requested cuts, shot order, actor/action bindings, overlap, timing, pace, and audio continuity. Wild or Unbound video development may choose cuts; those cuts are authorized rather than padding. Never invent cut times or timestamps, runtime, frame count, or frame-accurate scheduling.
 - Leave camera behavior unspecified when neither the user nor valid Wild or Unbound video delegation chooses it. Under Wild or Unbound, camera behavior may be selected to serve the concept. Preserve requested movement or fixed framing and all supplied timeline or shot restrictions; clarify genuinely incompatible camera or framing locks rather than weakening them.
 - The structures below form **one pasteable text prompt**. Their sections are not separate ComfyUI properties and are not parser requirements.
+
+## Negatives and Optional Enhancement
+
+Do not add automatic negatives or a stock blacklist. The inspected native templates route positive conditioning to `BasicGuider` and expose no separate negative-text path. If a requested negative is intended for this selected path, explain that it is not consumed and clarify the intended use. Clearly requested standalone negative text may be returned without claiming execution support. Never silently fold it into the positive prompt. Scene exclusions remain binding authored instructions; never negate required text, intentional style or blur, stillness, or authorized motion.
+
+**H3-only enhancement offer:** after an H3 prompt, briefly offer optional in-chat enhancement outside the pasteable prompt when the requested output permits it. The enhancement is optional; make the offer without producing another version. An explicit “prompt only,” equivalent restriction, machine-readable-only output, or artifact-only file content suppresses the offer. Do not add notes packages or automatic enhancement. Other targets retain the prompt-only default. Enhancement happens only after a request, under unchanged permissions and locks, without invoking an external service.
+
+For this H3 exception, an ordinary “write a prompt” request is **not** an explicit prompt-only restriction. Neither the inferred single-prompt output field nor the generic prompt-only default suppresses the offer. After the completed pasteable H3 prompt, put a short separate line such as “Would you like an in-chat enhancement that preserves these references and constraints?” Do not offer after a clarification or analysis-only response.
+
+Enhance only after the user requests it, preserving task, scope, invention permissions, source evidence, role bindings, and locks. This is an in-chat rewrite—not external Context-IR, a hosted service, checkpoint behavior, generation, or extraction.
+
+## Wildcard Serialization
+
+Follow [Wildcards](../wildcards.md) for scope, counts, paths, file creation, and full-prompt-versus-fragment behavior. Each full-prompt entry uses the compatible selected route's reference bindings, sections, and temporal meaning unless the user specifies another compatible format. Serialize the complete entry onto **one physical line**: replace section and paragraph line breaks with spaces while keeping applicable section names, labels, speaker IDs, exact supplied text, dialogue/cut serialization, and the first-frame anchor. A line is one selectable prompt, not one section. Do not invent a route or missing reference role to fill an entry. Fragment entries do not repeat host-template boilerplate.
+
+Never put an enhancement offer inside a wildcard entry or any other artifact-only file content; the offer is outside pasteable prompt text and remains subject to the output restrictions above.
 
 ## Native References and Conditioning
 
@@ -302,12 +320,6 @@ Unspecified
 non_diegetic_music:
 Unspecified
 ```
-
-## Negatives and Optional Enhancement
-
-Do not add automatic negatives or a stock blacklist. The inspected native templates route positive conditioning to `BasicGuider` and expose no separate negative-text path. If a requested negative is intended for this selected path, explain that it is not consumed and clarify the intended use. Clearly requested standalone negative text may be returned without claiming execution support. Never silently fold it into the positive prompt. Scene exclusions remain binding authored instructions; never negate required text, intentional style or blur, stillness, or authorized motion.
-
-After the pasteable prompt, briefly offer optional in-chat enhancement only when the requested output format permits. Suppress the offer for “prompt only” or equivalent restrictions. Do not emit a second version automatically. Enhance only after the user requests it, preserving task, scope, invention permissions, source evidence, role bindings, and locks. This is an in-chat rewrite—not external Context-IR, a hosted service, checkpoint behavior, generation, or extraction.
 
 ## Primary Sources
 

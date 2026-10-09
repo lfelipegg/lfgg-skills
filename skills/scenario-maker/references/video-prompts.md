@@ -1,6 +1,6 @@
 # Video Prompts
 
-Use this reference for text-to-video, image-to-video, reference-video generation, source-video editing, and Wan-style prompts. For MiniMax H3, read [its model profile](models/minimax-h3.md) as well: it owns native reference binding, audio, first-frame anchoring, frame-derived still editing, and output sections. The H3 profile is also required for frame-derived edits requested as still images.
+Use this reference for text-to-video, image-to-video, reference-video generation, source-video editing, and frame-derived still editing. Read the selected model profile as applicable; it owns verified reference binding, audiovisual support, first-frame anchoring, native routes, and output sections. Generic video guidance does not establish those capabilities.
 
 Read `routing.md`, `output-contracts.md`, [Scene Composition](scene-composition.md), and [Constraints and Revisions](constraints-and-revisions.md) first. These task fields do not change a critique/comparison into prompt writing, authorize video generation, or expand operation and scope permissions. Explicit output formatting overrides presentation defaults below.
 
@@ -18,7 +18,7 @@ The following are available video-description fields, not required slots or perm
 
 Express only fields supplied by the user or permitted by the resolved operation, mode, and scope. A model or video template does not authorize missing motion, camera movement, atmosphere, supporting objects, events, or scene content. Within an authorized Wild or Unbound audiovisual task, motion, camera, progression, and sound may be chosen to serve the organizing concept rather than merely to fill these fields.
 
-Keep visual video descriptions observable. Avoid dialogue, music, sound effects, inner thoughts, and invisible story context unless supplied, requested, or validly delegated by Wild or Unbound as part of the intended audiovisual contract. Supplied nonvisual information needs a visible rendering only for a visual-only task; do not discard intended audio in an audiovisual H3 task. Supplied reference media alone does not authorize copying its sound or inventing sound. Use only supplied or permitted cues, and never infer audio support from Wan or an unnamed model.
+Keep visual video descriptions observable. Avoid dialogue, music, sound effects, inner thoughts, and invisible story context unless supplied, requested, or validly delegated by Wild or Unbound as part of the selected profile's verified audiovisual contract. Supplied nonvisual information needs a visible rendering only for a visual-only task; do not discard intended audio in a supported audiovisual task. Supplied reference media alone does not authorize copying its sound or inventing sound. Use only supplied or permitted cues, never infer audio support from a model family or unnamed target, and leave unspecified sound unspecified rather than treating it as silence.
 
 ## Text-to-Video
 
@@ -47,13 +47,13 @@ Conditional structure:
 
 References are role-bound sources, not necessarily opening anchors. Identify which source contributes identity, appearance, clothing, composition, motion, camera, style, or sound; transfer only those properties. Editing requires an identified visual base, local changes, and preservation of unaffected content. A motion-reference video is not automatically the video being edited. Use the selected profile's verified labels and consumption rules rather than inventing universal reference syntax.
 
-For H3 frame-derived image editing, the requested edited state must exist in the first generated output frame, not at the end of a later transformation. This differs from FL2VA anchoring the input image at time zero. Never perform downstream generation or extraction for a prompt-writing request.
+For frame-derived image editing, the requested edited state must exist in the first generated output frame, not at the end of a later transformation. This differs from image-to-video anchoring the input image at time zero. Verify the selected route in its profile; never perform downstream generation or extraction for a prompt-writing request.
 
-## Wan Video Format
+## Cinematic Single-Paragraph Format
 
-Use for Wan, Wan-style, or when the user asks for a cinematic single-paragraph video prompt.
+Use when the user asks for a cinematic single-paragraph video prompt. This requested format does not select a model.
 
-Wan prompts should be one cohesive paragraph. Within that paragraph, order only the fields the user supplied or the resolved permissions allow, which may include:
+For that format, use one cohesive paragraph. Within it, order only the fields the user supplied or the resolved permissions allow, which may include:
 
 - subject
 - scene
@@ -62,7 +62,7 @@ Wan prompts should be one cohesive paragraph. Within that paragraph, order only 
 - visual atmosphere
 - stylization
 
-This ordering is presentation guidance, not a requirement to fill every field. Do not split Wan output into shot lists unless the user asks. Keep the permitted content direct, cinematic, and ready to paste.
+This ordering is presentation guidance, not a requirement to fill every field. Do not split a requested single paragraph into shot lists unless the user asks. Keep the permitted content direct, cinematic, and ready to paste.
 
 Example shape when every depicted field is authorized:
 

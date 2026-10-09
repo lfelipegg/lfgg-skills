@@ -1,4 +1,4 @@
 interface:
   display_name: "Scenario Maker"
-  short_description: "Build model-aware image/video prompts and wildcards"
-  default_prompt: "Use $scenario-maker to build a Pony prompt package and a matching SDXL variant."
+  short_description: "Write generic prompts or compare model approaches"
+  default_prompt: "Use $scenario-maker to compare SDXL 1.0 Base and Pony Diffusion V6 XL prompt expression for a blue mug on a white shelf. Analysis only; do not write prompts."

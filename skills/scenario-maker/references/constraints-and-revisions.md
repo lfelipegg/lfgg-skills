@@ -83,7 +83,7 @@ Rendering uncertainty alone is not a conflict: preserve requested content withou
 
 ## Wild Audiovisual Permission
 
-These bounded permissions also apply to Unbound. When creating or expanding an audiovisual video concept in Wild or Unbound, the mode delegates permitted action and progression, camerawork, shot structure, ambience, sound effects, music, and concise original dialogue or lyrics and vocal qualities when they serve the concept. These are options, not mandatory slots.
+These bounded permissions also apply to Unbound. When creating or expanding an audiovisual video concept in Wild or Unbound under the selected profile's verified audiovisual contract, the mode delegates permitted action and progression, camerawork, shot structure, ambience, sound effects, music, and concise original dialogue or lyrics and vocal qualities when they serve the concept. These are options, not mandatory slots.
 
 Wild or Unbound may select cuts, but must not invent numeric cut times or runtime. Respect supplied duration, shot order, single-shot or continuous-take restrictions, fixed-camera instructions, supplied words, and sound exclusions.
 

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Scenario Maker — SDXL"
+  short_description: "SDXL prompts, analysis, variants, and wildcards"
+  default_prompt: "Use $scenario-maker-sdxl to adapt a red cube image-left of a blue sphere for SDXL 1.0 Base, preserving a sign reading exactly 'Open late!'. Return prompt only."

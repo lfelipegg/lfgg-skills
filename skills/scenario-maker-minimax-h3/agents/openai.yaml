@@ -1,0 +1,4 @@
+interface:
+  display_name: "Scenario Maker — MiniMax H3"
+  short_description: "MiniMax H3 prompts, analysis, variants, and wildcards"
+  default_prompt: "Use $scenario-maker-minimax-h3 to write a native local H3 Ref2VA prompt. Connected Picture 1 supplies only a brass compass's appearance; the compass rotates slowly on plain gray cloth. Audio is unspecified. Return prompt only."

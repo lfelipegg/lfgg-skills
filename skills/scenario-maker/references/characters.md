@@ -11,7 +11,7 @@ Treat clothing as garments, not the wearer: a clothing-scope request does not ga
 
 ## CLI
 
-Run from the `scenario-maker` skill root:
+Run from the selected skill's root:
 
 ```bash
 python3 scripts/character_generator.py --count 1
@@ -53,7 +53,7 @@ Danbooru tags produced by the randomized generator are rendered in this order:
 
 `gender`, `hair_color`, `hair_length`, `bangs`, `hair_style`, `breast_size`, `skin_color`, `tanline`, `body_type`, `clothes`
 
-The order organizes fields that the authorized generator run actually selected; it is not a checklist for direct character writing and does not authorize filling absent fields. It follows common tag-group structure: subject count and adult presentation first, then hair, body, skin/tanline, build, and attire. When the user names a supported image model, read its selected profile through [Model-Specific Image Prompt Profiles](model-prompts.md) and apply compatible presentation without adding character or scene facts.
+The order organizes fields that the authorized generator run actually selected; it is not a checklist for direct character writing and does not authorize filling absent fields. It follows common tag-group structure: subject count and adult presentation first, then hair, body, skin/tanline, build, and attire. Apply compatible presentation from the model profile already selected by the entry point without adding character or scene facts; no all-model index is needed here.
 
 ## Safety Defaults
 
@@ -68,7 +68,7 @@ These are generator behaviors, not defaults for directly written character promp
 
 ## Examples
 
-Danbooru-only character for Illustrious:
+Danbooru-only character:
 
 ```bash
 python3 scripts/character_generator.py --format danbooru --gender female --hair-color white --hair-length long --bangs blunt --hair-style twin_braids --skin-color pale --body-type petite --clothes dress

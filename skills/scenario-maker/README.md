@@ -20,6 +20,20 @@ Scenario Maker is an agent skill for writing, refining, critiquing, and batching
 
 The skill provides model-specific **prompt-writing guidance**, not model execution. Name the target in your request to select its conventions.
 
+This is the **generic/comparison skill**: use it for unnamed or unknown-model
+requests, cross-family analysis, and multi-target authoring. Explicitly choosing
+`scenario-maker` for one supported target still uses its complete local catalog;
+no specialist installation is required.
+
+For a resolved single family, independently install `scenario-maker-sdxl`,
+`scenario-maker-krea-2`, `scenario-maker-illustrious`, `scenario-maker-noobai`,
+`scenario-maker-pony`, `scenario-maker-wan`, or `scenario-maker-minimax-h3`.
+Each specialist includes its own profile, shared contracts, utilities, and lookup
+data. Its invocation selects the family only—not a task, checkpoint branch,
+native route, scope expansion, or permission to change supplied content. A
+different explicit target overrides that implied family; an isolated specialist
+identifies the mismatch rather than substituting its own dialect.
+
 | Model | Covered versions or variants | Default prompt style |
 | --- | --- | --- |
 | [SDXL](references/models/sdxl.md) | Stable Diffusion XL 1.0 Base | Compact natural-language phrases. |
@@ -27,7 +41,7 @@ The skill provides model-specific **prompt-writing guidance**, not model executi
 | [Illustrious XL](references/models/illustrious.md) | Official v0.1 and v1.0 bases; aliases include `Illustrious` and `ILXL` | Danbooru-style tags. |
 | [NoobAI XL](references/models/noobai.md) | 1.1 epsilon-prediction and V-Pred 1.0 | Tags and short visual phrases, with spaces instead of underscores. |
 | [Pony Diffusion](references/models/pony-v6.md) | V6 XL; aliases include `Pony` and `PDXL` | Tags and short visual phrases using applicable score/source/rating conventions. |
-| [Wan](references/video-prompts.md#wan-video-format) | Wan-style text-to-video and image-to-video guidance; no version-specific profile | One cohesive cinematic paragraph describing authorized motion and scene details. |
+| [Wan](references/models/wan.md) | Existing version-agnostic Wan-style text-to-video and image-to-video guidance; no newly asserted release support | One cohesive cinematic paragraph describing authorized motion and scene details. |
 | [MiniMax H3 Ref2VA](references/models/minimax-h3.md) | Native local H3-Base-Ref2VA through `MiniMaxH3ReferenceToVideo` | Six-section reference generation/editing prompt; English and Medium detail by default. |
 | [MiniMax H3 FL2VA](references/models/minimax-h3.md#fl2va-first-frame-video) | Native local H3-Base-FL2VA through `MiniMaxH3ImageToVideo`, one opening image | Opening-frame anchor followed by three sections; English and Medium detail by default. |
 
@@ -233,3 +247,19 @@ To request modular files, name the roles explicitly, such as clothing, settings,
 - [evals/](evals/): prompt-behavior evaluation cases, tooling, and regression fixtures. Historical runs and review records remain in the [original repository](https://github.com/lfelipegg/scenario-maker-skill/tree/d5804da2c1f14715dfde1160641e2ca2d563cb5d/evals); see the [collection evaluation instructions](../../README.md#evaluation-tooling).
 
 For detailed behavior, start with [output contracts](references/output-contracts.md), [constraints and revisions](references/constraints-and-revisions.md), and the [model profile index](references/model-prompts.md).
+
+## Maintaining the standalone family
+
+Shared contracts, scripts, `CONTEXT.md`, and the two source CSVs are authored
+here and synchronized into committed specialist-local copies. Profiles are
+authored in their owning specialist and synchronized back into this skill's
+comparison catalog; H3's official guide copies remain byte-identical. From the
+collection root, run `python3 scripts/sync_scenario_skills.py`, then
+`python3 scripts/sync_scenario_skills.py --check`. Entry points, READMEs, UI
+metadata, the generic index, tests, and historical evaluation assets are not
+synchronized. Installation never builds or accesses a sibling package.
+
+The [collection evaluation instructions](../../README.md#evaluation-tooling)
+separate offline checks, current-monolith/split captures, independent AI migration
+review, and legacy human review. AI judgments are not human sign-off; packaging
+alone is not prompt-quality acceptance.

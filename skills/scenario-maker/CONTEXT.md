@@ -10,6 +10,12 @@ The visible content of a requested image or video, independent of the wording pr
 **Model profile**:
 The conventions for expressing a scene for a particular model or checkpoint, including its prompt language and applicable syntax. A model profile is not a task definition or an interface's controls.
 
+**Model-specific skill**:
+A prompt-authoring workflow specialized for one supported model family and its covered variants. Selecting it identifies the target family, not the task, interface, or permitted scene changes.
+
+**Generic/comparison skill**:
+A prompt-authoring workflow for requests without a selected model and for reasoning or authoring across model targets. A comparison is analysis unless prompt artifacts are also requested.
+
 **Task profile**:
 What must be communicated for an activity such as still-image creation, image editing, text-to-video, or image-to-video. It is distinct from how a model prefers that information expressed.
 
@@ -38,5 +44,5 @@ A complete generation prompt selectable as one entry, including any applicable m
 A partial description intended for insertion into a larger prompt, rather than a complete prompt with repeated model boilerplate.
 
 **Frame-derived image editing**:
-A workflow that uses video generation and takes the first generated frame as an edited still image. The requested MiniMax H3 route uses this meaning; it does not assert that the model exposes native still-image editing.
+A workflow that uses video generation and takes the first generated frame as an edited still image. This does not assert that the selected model exposes native still-image editing.
 _Avoid_: Native image editing, when referring to this video-and-frame-selection workflow

@@ -2,7 +2,7 @@
 
 ## Output Contract
 
-Read `output-contracts.md` before choosing the response shape. A single prompt-writing request returns only the finished prompt, subject to its bounded H3-only enhancement-offer exception. Negatives, notes, alternatives, and wrappers are not added just because they might be useful. Critiques, comparisons, requested pairs, and batches retain their requested shape.
+Read `output-contracts.md` before choosing the response shape. A single prompt-writing request returns only the finished prompt, subject only to a selected profile's documented bounded exception; explicit output restrictions still win. Negatives, notes, alternatives, and wrappers are not added just because they might be useful. Critiques, comparisons, requested pairs, and batches retain their requested shape.
 Apply [Scene Composition](scene-composition.md) for the model-neutral content workflow and [Constraints and Revisions](constraints-and-revisions.md) for operation, mode, scope, preservation, and conflict rules.
 
 The formats below describe prompt syntax, not permission to replace analysis with a prompt or expand the requested scope. Explicit formatting takes precedence over compatible model presentation defaults.
@@ -22,7 +22,7 @@ Visibility alone does not authorize a new fact. Scope and operation still govern
 
 Avoid internal thoughts, backstory, hidden motivation, smells, sound, lore, and unverifiable emotions. Express an emotion through visible cues only when those cues were supplied or may be chosen under the resolved operation, mode, and scope; do not invent posture, expression, lighting, gesture, or environment merely to make an emotion visible.
 
-For audiovisual H3 tasks, supplied/requested sound, dialogue, lyrics, and reference-audio roles are part of the authored contract; follow [MiniMax H3](models/minimax-h3.md) rather than deleting them under the visual default. Preserve exact supplied words and language. Unspecified sound stays unspecified when neither explicit audio intent nor valid Wild or Unbound audiovisual delegation exists; do not silently convert absence to silence. The visible-only rule still governs visual-only tasks.
+For supported audiovisual tasks, supplied/requested sound, dialogue, lyrics, and reference-audio roles are part of the authored contract; follow the selected profile's verified audiovisual contract rather than deleting them under the visual default. Preserve exact supplied words and language. Unspecified sound stays unspecified when neither explicit audio intent nor valid Wild or Unbound audiovisual delegation exists; do not silently convert absence to silence. The visible-only rule still governs visual-only tasks.
 
 ## Output Formats
 
@@ -59,7 +59,7 @@ Example tag-style vocabulary (validate uncertain canonical spellings with the lo
 
 These are approximate presentation guides, not minimums, guarantees, or model limits. A named profile may choose a different default. Stop when the requested content is fully expressed; do not add props, actions, setting details, or weather just to reach a length target. Adaptation remains Preserve even at Long detail.
 
-Detail and dialect are independent. A longer SDXL phrase prompt remains phrase-oriented unless prose is requested. For Tag or Danbooru Version, express the requested detail in that format, retaining the literal/relational exceptions above. No format has a mandatory sentence count.
+Detail and dialect are independent. A longer phrase-oriented prompt remains phrase-oriented unless prose is requested. For Tag or Danbooru Version, express the requested detail in that format, retaining the literal/relational exceptions above. No format has a mandatory sentence count.
 
 ## Scenario Types
 

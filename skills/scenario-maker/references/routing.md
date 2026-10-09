@@ -7,12 +7,12 @@ Route each request by inferring independent fields from ordinary language. These
 - **Operation** — `create`, `expand`, `adapt`, `revise`, or `critique`. A comparison remains analysis across the named prompts, targets, or approaches; do not turn it into prompt writing unless the user also asks for prompts.
 - **Task** — `still image`, `image editing`, `text-to-video`, `image-to-video`, `reference-video generation`, or `source-video editing`. The task describes what the prompt is for, independently of model wording or interface controls. Frame-derived still editing is an image-editing workflow whose downstream backend produces video; it is not animation of a hard-anchored opening.
 - **Scope** — `full scene`, `character design`, `clothing`, or `isolated asset`. Character and clothing scopes are content boundaries, not models or tasks.
-- **Target** — the named model or checkpoint profile, if any. Never infer a specific target from a style, scope, or task.
+- **Target** — the named model or checkpoint profile, if any. Never infer a specific target from a style, scope, or task. Invoking a model-specific skill supplies its family only when no model is requested; a different explicitly requested family overrides it. Family invocation does not choose a checkpoint variant, task, interface, or native route, broaden scope, or release locks.
 - **Output** — `prompt only`, `positive/negative pair`, `variants`, `file`, or the requested analysis. Preserve an explicit count, format, file scope, and analysis shape.
 
 Infer all fields together, then apply the instructions for each without allowing one field to replace another. For example, adapting clothing for a named checkpoint is still a clothing-scope adaptation; it is not automatically a character-generation task.
 
-Retain whether an output restriction was **explicitly requested**. Inferring a single-prompt artifact does not mean the user explicitly prohibited all surrounding text; this distinction controls only the bounded H3 enhancement offer in [Output Contracts](output-contracts.md), not generic permission to add notes.
+Retain whether an output restriction was **explicitly requested**. Inferring a single-prompt artifact does not mean the user explicitly prohibited all surrounding text; this distinction applies only when the selected profile documents a bounded exception under [Output Contracts](output-contracts.md), not as generic permission to add notes.
 
 ## Content and Capability Boundaries
 
@@ -35,14 +35,14 @@ Ask a concise clarifying question before claiming model-specific adaptation, syn
 ## Routing Boundaries
 
 - “Expand this character outfit for a still image” → `expand` + `still image` + `clothing` + no target + `prompt only` unless another output is requested.
-- “Critique this SDXL prompt” → `critique` + the prompt's task and scope when discernible + `SDXL` + requested analysis; return critique, not a replacement prompt.
-- “Compare this prompt in SDXL and Krea 2” → comparison analysis for two targets; do not silently produce prompts or generation results.
-- “Adapt this starting frame for Wan image-to-video” → `adapt` + `image-to-video` + the described scope + `Wan` + the requested output.
-- “Make a character for Pony” → character scope and Pony target; character is neither the model nor the task. Clarify the task only if the distinction materially changes the artifact.
-- “Use native local H3 Ref2VA to combine these role-bound references” → reference-video generation; a video used only for motion or style is not automatically the source being edited.
-- “Change only the coat in this source video using native H3 Ref2VA” → source-video editing, with an identified source, authorized change, and preserved surroundings.
-- “Animate this opening image with native H3 FL2VA” → image-to-video; ask what should change or move only when animation intent is unspecified and future intent has not already been delegated by Wild or Unbound.
-- “Use native H3 Ref2VA to edit this still; I will extract the first output frame” → frame-derived image editing; the complete edit must exist in the first generated frame. Do not generate video or extract it.
-- “Use Aurora syntax” when Aurora's identity is unresolved → clarify if syntax depends on which Aurora is meant; proceed generically only when the requested result does not depend on that identity.
+- “Critique this prompt for the named model” → `critique` + the prompt's task and scope when discernible + the named target + requested analysis; return critique, not a replacement prompt.
+- “Compare this prompt for two named models” → comparison analysis for two targets; do not silently produce prompts or generation results.
+- “Adapt this starting frame for image-to-video” → `adapt` + `image-to-video` + the described scope + any independently selected target + the requested output.
+- “Make a character for the named model” → character scope and the named target; character is neither the model nor the task. Clarify the task only if the distinction materially changes the artifact.
+- “Combine these role-bound references using the selected profile's supported route” → reference-video generation; a video used only for motion or style is not automatically the source being edited.
+- “Change only the coat in this source video” → source-video editing, with an identified source, authorized change, and preserved surroundings; verify support in the selected profile.
+- “Animate this opening image” → image-to-video; ask what should change or move only when animation intent is unspecified and future intent has not already been delegated by Wild or Unbound.
+- “Edit this still through a supported video route; I will extract the first output frame” → frame-derived image editing; the complete edit must exist in the first generated frame. Do not generate video or extract it.
+- “Use this model's syntax” when its identity is unresolved → clarify if syntax depends on which model is meant; proceed generically only when the requested result does not depend on that identity.
 
 After routing and scene planning, apply [Prompt Types](prompt-types.md) for prompt syntax and general task conventions, plus the named model or video reference when the resolved target or task requires it. Apply [Output Contracts](output-contracts.md) to determine the returned artifact's shape.

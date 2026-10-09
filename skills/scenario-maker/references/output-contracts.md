@@ -10,9 +10,7 @@ A critique remains analysis and does not silently become a rewrite. A comparison
 
 For prompt writing with multiple named targets, produce one prompt per target with only the minimal labels needed to distinguish them. A request for one shared prompt produces one prompt when the targets' requirements are compatible. If they are not compatible, ask which constraint may change rather than silently splitting the prompt. A comparison of those targets still returns analysis, not prompts.
 
-**H3-only enhancement offer:** after an H3 prompt, briefly offer optional in-chat enhancement outside the pasteable prompt when the requested output permits it. The enhancement is optional; make the offer without producing another version. An explicit “prompt only,” equivalent restriction, machine-readable-only output, or artifact-only file content suppresses the offer. Do not add notes packages or automatic enhancement. Other targets retain the prompt-only default. Enhancement happens only after a request, under unchanged permissions and locks, without invoking an external service.
-
-For this H3 exception, an ordinary “write a prompt” request is **not** an explicit prompt-only restriction. Neither the inferred single-prompt output field nor the generic prompt-only default suppresses the offer. After the completed pasteable H3 prompt, put a short separate line such as “Would you like an in-chat enhancement that preserves these references and constraints?” Do not offer after a clarification or analysis-only response.
+Only a selected profile may authorize its documented, bounded exception to the prompt-only default, for the target and tasks it covers. This never grants generic permission for notes, packages, or automatic additional artifacts. Explicit “prompt only,” equivalent restrictions, machine-readable-only output, and artifact-only file content still suppress surrounding additions; follow the selected profile's exact conditions.
 
 ## Precedence
 
@@ -55,8 +53,8 @@ When file output is requested, write only the requested artifact scope and repor
 
 ## Boundaries
 
-- `SDXL, tags only, no negative prompt` → the tag prompt only.
+- `Tags only, no negative prompt` → the tag prompt only.
 - Danbooru Version requiring `Open late!` → preserve `Open late!` in a minimal quoted literal phrase; do not lowercase or snake-case the lettering.
 - Canonical-only tags with an unexpressible required relationship → ask which constraint may change.
 - A model known to render text unreliably → preserve the requested text without interrupting solely for that uncertainty.
-- `Write this for SDXL and Krea 2` → two minimally labeled prompts, not two prompt packages.
+- `Write this for two named targets` → two minimally labeled prompts, not two prompt packages.

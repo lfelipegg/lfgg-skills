@@ -59,6 +59,8 @@ If the user asks for one wildcard file, prefer `full-prompts.txt`. If they ask f
 
 ## Content Guidance
 
-For full-prompt wildcard files, each line should be a complete ready-to-use prompt. For modular wildcard files, each line should be a clean fragment that can combine with other wildcard parts.
+Apply the requested format and authorized content first. For full-prompt wildcard files, each line is a complete ready-to-use prompt and otherwise uses the selected profile's compatible dialect defaults, including any applicable prefixes. For modular wildcard files, each line is a clean fragment that can combine with other parts; fragments do not repeat host-prompt boilerplate.
+
+Profiles do not redesign the requested fragment, file, or export scope. Follow any selected profile's documented serialization rules while retaining one physical line per entry and no surrounding offers or explanations inside files. After writing, report the saved paths and line counts.
 
 Avoid commas at the end of lines unless the user's ComfyUI template requires them.

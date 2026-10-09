@@ -1,0 +1,4 @@
+interface:
+  display_name: "Scenario Maker — Wan"
+  short_description: "Wan prompts, analysis, variants, and wildcards"
+  default_prompt: "Use $scenario-maker-wan to write an image-to-video prompt from a white cat on a blue cushion. Only its tail curls once; lighting and camera stay fixed. Return prompt only."

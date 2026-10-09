@@ -4,7 +4,7 @@ This profile supplies compatible defaults only after the scene and output have b
 
 ## Identity and Aliases
 
-- `SDXL`, `Stable Diffusion XL`, `Stable-Diffusion-XL`, and `Stable Diffusion XLarge` use this profile when they unambiguously mean the Stability AI family.
+- Case-insensitive aliases `SDXL`, `Stable Diffusion XL`, `Stable-Diffusion-XL`, `Stable Diffusion XLarge`, `SDXL 1.0 Base`, and `stabilityai/stable-diffusion-xl-base-1.0` use this profile when they unambiguously mean the Stability AI family.
 - Unqualified `SDXL` uses general guidance grounded in `stabilityai/stable-diffusion-xl-base-1.0`. It does not imply a fine-tune, the separate refiner, a base-plus-refiner pipeline, or a particular interface.
 - If the named checkpoint or interface materially changes the requested syntax or capability, use that exact contract rather than assuming it from this base profile.
 

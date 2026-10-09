@@ -1,0 +1,4 @@
+interface:
+  display_name: "Scenario Maker — NoobAI"
+  short_description: "NoobAI prompts, analysis, variants, and wildcards"
+  default_prompt: "Use $scenario-maker-noobai to adapt one adult woman with long black hair and green eyes for NoobAI XL 1.1 using its default tag style. No quality prefix; return tags only."

@@ -6,3 +6,12 @@ node_modules/
 /skills/scenario-maker/evals/comparisons/
 /skills/scenario-maker/evals/results/
 /skills/scenario-maker/evals/reviews/
+
+# Generated caches and wildcard exports in standalone Scenario Maker specialists.
+/skills/scenario-maker-*/**/__pycache__/
+/skills/scenario-maker-*/**/*.pyc
+/skills/scenario-maker-*/**/*.pyo
+/skills/scenario-maker-*/docs/danbooru_tags/*.sqlite
+/skills/scenario-maker-*/docs/danbooru_tags/*.sqlite-*
+/skills/scenario-maker-*/docs/danbooru_tags/*.sqlite.tmp
+/skills/scenario-maker-*/wildcards/

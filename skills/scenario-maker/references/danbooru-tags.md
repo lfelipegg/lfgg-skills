@@ -4,7 +4,7 @@ Use the lookup script for Danbooru-style prompts. Do not open the raw CSV files 
 
 ## Lookup Commands
 
-Run commands from the `scenario-maker` skill root:
+Run commands from the selected skill's root:
 
 ```bash
 python3 scripts/danbooru_lookup.py search "black hair" --limit 20

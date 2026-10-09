@@ -1,0 +1,4 @@
+interface:
+  display_name: "Scenario Maker — Illustrious"
+  short_description: "Illustrious prompts, analysis, variants, and wildcards"
+  default_prompt: "Use $scenario-maker-illustrious to adapt one adult woman with long black hair and green eyes for Illustrious v1.0 in Danbooru Version. No quality prefix; return tags only."

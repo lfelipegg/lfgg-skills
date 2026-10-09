@@ -17,7 +17,7 @@ Missing fields remain unspecified until the operation, scope, and invention mode
 
 Apply [Constraints and Revisions](constraints-and-revisions.md) to decide what may change. Infer these permissions from ordinary language; do not require the user to supply a schema or choose a mode when the default is sufficient.
 
-For an audiovisual H3 task, also retain intended sound, exact dialogue or lyrics, source-role bindings, and temporal order under the [H3 profile](models/minimax-h3.md). This augments the visual scene description without changing its definition. A source's presence alone does not choose which properties to transfer. Wild or Unbound can authorize bounded audiovisual invention only as defined in [Constraints and Revisions](constraints-and-revisions.md#wild-audiovisual-permission).
+For a supported audiovisual task, also retain intended sound, exact dialogue or lyrics, source-role bindings, and temporal order under the selected profile's verified audiovisual contract. This augments the visual scene description without changing its definition. A source's presence alone does not choose which properties to transfer. Wild or Unbound can authorize bounded audiovisual invention only as defined in [Constraints and Revisions](constraints-and-revisions.md#wild-audiovisual-permission).
 
 ## Operations
 
@@ -53,4 +53,4 @@ Compare the final artifact with the source and the locally authorized changes, n
 
 For Wild or Unbound, then check that permitted visual and supported audiovisual inventions serve one coherent concept rather than accumulating unrelated surprises. For Unbound, also check scenario completeness within the resolved scope and operation. Remove optional invention before violating hard length or format constraints.
 
-Keep this check internal. Return the requested prompt, analysis, pair, or batch shape without unsolicited explanations or alternative outputs; only the bounded H3 enhancement offer in [Output Contracts](output-contracts.md) is excepted.
+Keep this check internal. Return the requested prompt, analysis, pair, or batch shape without unsolicited explanations or alternative outputs; only a selected profile's documented bounded exception under [Output Contracts](output-contracts.md) may apply, and explicit output restrictions still win.

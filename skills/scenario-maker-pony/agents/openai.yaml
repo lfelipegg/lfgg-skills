@@ -1,0 +1,4 @@
+interface:
+  display_name: "Scenario Maker — Pony"
+  short_description: "Pony prompts, analysis, variants, and wildcards"
+  default_prompt: "Use $scenario-maker-pony to adapt an anime illustration of one adult woman with long black hair wearing a red coat for Pony Diffusion V6 XL. Preserve all facts and return prompt only."
