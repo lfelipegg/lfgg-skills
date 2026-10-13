@@ -63,7 +63,11 @@ python3 scripts/danbooru_lookup.py --json tag grey_hair
 python3 scripts/danbooru_lookup.py search "black hair" --limit 5
 ```
 
-The lookup resolves local data and can create its local SQLite index automatically. Keep `scripts/build_danbooru_index.py` beside it. Randomized character generation is activated only by a randomization request; direct character authoring does not run the generator:
+The lookup resolves local data and can create its local SQLite index automatically. Keep `scripts/build_danbooru_index.py` beside it.
+
+Allow for automatic cold-index construction in the bounded command deadline. Before finalizing evidence-dependent tags, consume the lookup's terminal status and hits; a running handle is not validation. Use the host's supported wait/follow-up mechanism for that same command rather than polling or launching a replacement lookup. See the shared [Danbooru workflow](references/danbooru-tags.md).
+
+Randomized character generation is activated only by a randomization request; direct character authoring does not run the generator:
 
 ```bash
 python3 scripts/character_generator.py --seed 7 --count 1 --format prose

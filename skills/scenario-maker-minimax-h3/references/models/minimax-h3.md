@@ -111,6 +111,8 @@ Wild or Unbound audiovisual delegation may establish new target sound intent, in
 
 Author audio sections when sound is requested, supplied as intended target content, or selected through valid Wild or Unbound audiovisual delegation. Otherwise write `Unspecified`; this does not request silence. `fully_copy`, explicit silence, no-score instructions, and other audio locks remain binding. Use `N/A` only with its explicitly declared meaning, such as requested complete silence in `overall_soundscape` or no non-diegetic music in `non_diegetic_music`.
 
+Before returning any H3 artifact, check each audio layer against its supplied intent, explicit locks, or valid audiovisual delegation. Preserve the distinction between chosen content, explicitly absent content, and content left unchosen: a requested sound in one layer does not choose or prohibit the others. Keep every unchosen layer `Unspecified`; do not turn limits on invention or reference-property transfer into target silence, “only” audio, a ban on additional sounds, or absent score. Use `N/A` only when its declared silence/no-score meaning is established by the resolved intent or a binding audio lock, and retain that meaning in explicit alternative formats as well.
+
 ## Shared Audiovisual Serialization
 
 Apply these rules to Ref2VA `detailed_description` and I2VA `integrated_multimodal_description`. They do not add audio to frame-derived still editing when audio is irrelevant or unspecified.

@@ -692,7 +692,9 @@ def run_reviewer(packet, destination, scratch, system_file, config_file, timeout
     status, exit_code, error = "error", None, None
     with (destination / "trace.jsonl").open("wb") as stdout, (destination / "stderr.txt").open("wb") as stderr:
         try:
-            process = subprocess.Popen(command, cwd=workspace, env=environment, stdout=stdout, stderr=stderr, start_new_session=True)
+            # The request is in argv; inherited pipes must not delay OMP startup.
+            process = subprocess.Popen(command, cwd=workspace, env=environment, stdin=subprocess.DEVNULL,
+                                       stdout=stdout, stderr=stderr, start_new_session=True)
             try:
                 exit_code = process.wait(timeout=timeout + 30)
                 status = "completed" if exit_code == 0 else "error"

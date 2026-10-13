@@ -68,7 +68,8 @@ together. Merely cloning the collection does not install it for every agent.
 lfgg-skills/
 ├── .git/                 # Only repository metadata directory
 ├── .gitignore
-├── AGENTS.md
+├── AGENTS.md             # Shared agent guidance (OMP, Codex, Claude Code)
+├── CLAUDE.md             # Imports AGENTS.md for Claude Code
 ├── README.md
 └── skills/
     ├── agent-builder/
@@ -208,13 +209,21 @@ and evaluation provenance, before runtime edits. The fixed model is
 `openai-codex/gpt-6-astra`, high reasoning; authenticated captures and review are
 paid model sessions, not offline tests. The corpus retains 744 attempts (124
 requests, three repetitions per side); the 13 boundary cases add 54. Fresh output
-directories are required, failures remain immutable, and there are no retries,
-resumes, or best-of replacements. Candidate captures contain only the selected
+directories are required, failures remain immutable, and generators have no
+retries, resumes, or best-of replacements. Fresh review campaigns likewise have
+no automatic recovery. The explicitly authorized review-only exception below
+does not change generator behavior. Candidate captures contain only the selected
 standalone package.
 
 Generator deadlines are 300 seconds; independent reviewers default to 900
 seconds so they can finish complete evidence packets. Every review must copy
 its packet's exact case ID and repetition; malformed output stays `not-run`.
+
+`review_split.py` passes the review request through argv and launches reviewers
+with `stdin=subprocess.DEVNULL`. This supplies immediate EOF even when the
+runner inherits a held-open pipe; the same launch serves initial reviews and
+independent adjudications. Offline EOF regression and guarded startup proof do
+not establish successful provider execution or semantic acceptance.
 
 Independent blinded AI semantic reviews and regression adjudication are a
 separate migration assessment. They never populate the legacy evaluator's
@@ -224,6 +233,217 @@ one complete consistent snapshot, full captures/reviews, no unresolved new
 contract failures, and measured ordinary-path context reduction including the
 installed descriptions and actual read traces. Native host automatic selection
 is not established by explicit isolated-skill captures.
+
+#### Fresh acceptance preparation
+
+`evals/review_acceptance.py` prepares a new complete assessment without invoking
+OMP, including version/provider probes. It never resumes the stopped recovery:
+411 fresh initial judgments, every required new independent adjudication, and
+one separately retained adjudication of the original baseline-only `h3-dev-02`,
+attempt 2 allegation. Old initial judgments are not reused.
+
+From the collection root, `ROUND` points to the unchanged round-2 captures and
+`ACCEPTANCE` to a new sibling directory outside all retained campaigns:
+
+```bash
+python3 -B skills/scenario-maker/evals/review_acceptance.py prepare \
+  --results "$ROUND/corpus" --boundary-results "$ROUND/boundary" \
+  --source-review "$ROUND/ai-review" --candidate-root skills --out "$ACCEPTANCE"
+python3 -B "$ACCEPTANCE/ai-review/provenance/review_acceptance.py" validate \
+  --out "$ACCEPTANCE"
+```
+
+Preparation checks all 798 captures and current runtime/input manifests, freezes
+411 packets and their side map, and retains the complete seven-module evaluator
+import closure, reviewer system and captured config. Prompt/input drift blocks
+reuse; preparation does not synchronize or repair it. `preparation.json` binds
+the original evidence, fixtures, rubric, prior applicable context/packaging proof,
+historical label alignment, evaluator differences and exact future execution
+argv/managed handle. Prior packaging/context checks are not presented as rerun.
+
+For the separately authorized repaired-source capture wave, supply **both**
+`--capture-preparation` and `--package-smoke-proof`; one alone is rejected.
+`CAPTURES` points to its completed frozen wave, `PACKAGE_PROOF` to the actual
+isolated-package smoke JSON, and `HISTORICAL_REVIEW` to the original round-2
+source review. Use a fresh `ACCEPTANCE` directory outside all retained campaigns:
+
+```bash
+python3 -B skills/scenario-maker/evals/review_acceptance.py prepare \
+  --results "$CAPTURES/corpus" --boundary-results "$CAPTURES/boundary" \
+  --source-review "$HISTORICAL_REVIEW" --candidate-root skills \
+  --capture-preparation "$CAPTURES/preparation.json" \
+  --package-smoke-proof "$PACKAGE_PROOF" --out "$ACCEPTANCE"
+python3 -B "$ACCEPTANCE/ai-review/provenance/review_acceptance.py" validate \
+  --out "$ACCEPTANCE"
+```
+
+This explicit scope binds the authorized repaired full-package identity, both
+capture manifests, fresh context/read-trace gates, observed managed terminal
+outcome, and exact runtime hashes from the isolated-package proof. The runtime-only
+smoke identity is not the complete capture identity. Without these scope inputs,
+the original unchanged-capture identity and ancillary-proof guards remain intact.
+
+Historical preparation independently rebuilds the original source review's
+own capture roots, packet labels, and all three raw repetitions. Fresh repaired
+outputs or side maps never replace that evidence. Both fresh and historical
+bindings are rechecked during validation; no old campaign is rewritten or resumed.
+The new scope changes preparation bindings only, not review criteria, source
+requests, acceptance gates, or execution authorization.
+
+Only a separately authorized `execute` may consume that frozen command. It
+permanently claims `launch.json`, rechecks all bindings before runtime observation,
+and rejects repeated, resumed or replacement execution. Use the exact retained
+argv, a managed process and no enclosing shell deadline. Readiness
+`"event": "acceptance_started"` proves runner startup only; concurrency three
+is not a canary or automatic stop-on-first-failure policy.
+
+The fresh `ai-review/summary.json`, supplemental `historical-disposition.json`
+and hash-linked `combined-outcome.json` remain distinct. Missing or incomplete
+historical adjudication blocks the combined result even when fresh reviews pass.
+Runner PID/start identity, actual runtime banner, raw streams and terminal status
+are retained at execution, not invented during preparation. Abrupt interruption
+requires observed external stop evidence under the schema documented by
+`observe_interruption()`; `record-interruption` neither signals processes nor
+manufactures `execution.json`, and never authorizes another launch.
+
+`execution.json` is the runner's own finalization/return-code record, not an
+independent observation of its OS exit. Final acceptance disposition must also
+retain the managed service's actual terminal result and match it to that record.
+A missing/mismatched service exit or a signal after finalization blocks acceptance
+even if a combined summary was already written. Preserve external evidence
+separately; do not rewrite the runner's terminal records.
+
+Offline preparation and synthetic subprocess verification do not establish
+provider/auth availability or semantic acceptance. The current prepared directory
+and authorization boundaries are recorded in [the handoff](docs/next-steps.md).
+
+#### Authorized review-only recovery
+
+`evals/review_recovery.py` implements the bounded exception recorded in
+[the current handoff](docs/next-steps.md): reuse 200 verified initial reviews
+from the interrupted round-2 campaign, supply its three interrupted and 208
+unstarted judgments, and independently adjudicate the retained baseline-only
+`h3-dev-02`, attempt 2 allegation plus every later hard-failure allegation.
+It is deliberately not a general resume/retry tool. Finished, failed, recovered,
+invalid, or differently populated source campaigns are rejected.
+
+From the collection root, with `SOURCE_REVIEW` pointing to that original
+`ai-review` directory and `RECOVERY` to a new nonoverlapping directory:
+
+```bash
+# Offline: validates all 798 captures, 411 frozen packets and 200 reused reviews.
+python3 skills/scenario-maker/evals/review_recovery.py plan \
+  --source-review "$SOURCE_REVIEW" --out "$RECOVERY" --jobs 3
+python3 skills/scenario-maker/evals/review_recovery.py status --out "$RECOVERY"
+
+# Paid: invoke only in the separately scoped Task C, once.
+python3 -u skills/scenario-maker/evals/review_recovery.py run --out "$RECOVERY"
+```
+
+Planning preserves the original campaign and hashes its complete inventory,
+including interrupted traces. New preparation retains exact packet, fixture,
+rubric, side-map, system/config and evaluator-code bindings in `plan.json` and
+`manifest.json`. Source, preparation or tool-code drift blocks launch.
+The fixed reviewer controls remain `openai-codex/gpt-6-astra`, high reasoning,
+900 seconds, fresh sessions and read-only declared tools.
+
+`run` exclusively claims permanent `launch.json`; an interrupted or blocked
+launch cannot be repeated or resumed. It runs only the 211 missing initial slots,
+then all required fresh independent adjudications. Do not create another plan
+to replace failed judgments or select best-of results. Reused reviews remain
+referenced at their original physical paths; new reviews, adjudication packets
+and raw evidence live under `RECOVERY`. Final `summary.json` and `manifest.json`
+expose every reused/new record path, packet/record/raw hash, provenance and
+evidence-backed disposition, retaining the original full-coverage acceptance
+gates. A partial assessment never passes.
+
+For long paid execution, use a managed process with no enclosing deadline and
+readiness matching `"event": "recovery_started"`; save the returned process
+handle before handing off. The runner retains PID/argv/version in `launch.json`,
+completion events in `completion-stdout.txt`, and terminal status/exit code in
+`execution.json`. Offline `status` revalidates retained hashes and reports valid
+reused/new/missing reviews, adjudication coverage and validation errors.
+`state: "started"` records a launch, not proof that its process is still alive.
+Status may be slow because it hashes the complete frozen evidence; do not poll
+in a loop. Authentication, provider availability and real semantic acceptance
+are not established by planning or synthetic tests.
+
+#### Stopped review-only recovery: not accepted
+
+The user authorized a controlled stop of the claimed recovery on 2026-10-10.
+The runner was suspended to prevent further queued launches, its three isolated
+worker groups were terminated, and the runner was killed. The final process
+snapshot showed no remaining runner or workers; the managed service reported
+exit 137. Task D is closed with an unsuccessful, interrupted disposition—not
+semantic acceptance.
+
+Post-stop offline validation found 200 valid reused reviews, zero valid new
+reviews, 102 invalid timeout attempts, 211 missing valid judgments, and no valid
+independent adjudication of the one required. No validation errors were reported.
+The sealed plan and original review-manifest hashes remain unchanged.
+
+The stop bypassed finalization: `execution.json` and `summary.json` are absent,
+and the retained manifest/status still say `started` and `not assessed`.
+That filesystem state is not evidence of a live process. Actual signal/process
+evidence and the gate-by-gate disposition are retained outside the recovery in
+`controlled-assessment-stop.json` and `controlled-assessment-outcome.json` under
+the comparison root named in [the handoff](docs/next-steps.md).
+
+In that stopped campaign, full review coverage and independent adjudication were
+not met; boundary and three-repetition semantic protection gates were not
+established. Complete capture, packaging, and context evidence did not substitute
+for them. Its baseline-only `h3-dev-02`, attempt 2 allegation had no adjudication
+in that campaign; the later separate fresh assessment below confirmed it.
+Timeouts are unavailable judgments, not semantic failures of the skill prompts.
+Do not resume/replan this recovery or manufacture terminal artifacts. The live
+reviewer stdin repair was separately authorized and verified offline; frozen
+provenance and stopped campaigns remain unchanged. Any further provider/model
+diagnostic or acceptance campaign requires separately scoped authorization.
+
+#### Completed fresh acceptance: not accepted
+
+The separately authorized frozen assessment completed all 411 fresh initial
+reviews, both required new independent adjudications and one separate historical
+adjudication, using the unchanged 798 captures. All 414 judgments were valid;
+none was reused, retried or replaced. Its managed process independently exited 1,
+matching exception-free runner finalization. Retained-evidence validation reported
+zero errors and no remaining wave processes.
+
+Semantic acceptance failed: `h3-guide-01`, attempt 3, independently confirmed a
+candidate audio-permission regression—unrequested audio became prohibited rather
+than `Unspecified`. Baseline passed that criterion in all three repetitions;
+candidate failed one. `split-invoke-illustrious`, attempt 3, also retains a
+`not-run` canonical-tag criterion because the capture contains a backgrounded
+lookup launch but no completion/results. Valid JSON is not complete criterion
+coverage. The separately adjudicated historical H3 allegation is baseline-only,
+not a candidate regression.
+
+The fresh summary, historical disposition, combined runner outcome and
+externally closed disposition remain distinct under the acceptance directory
+identified in [the handoff](docs/next-steps.md). This single-use assessment is
+closed and cannot be resumed or repeated. No source repair, synchronization,
+recapture or further paid assessment is authorized by its completion.
+
+The separately authorized offline source repair is complete: the shared Danbooru
+workflow now requires terminal lookup status/results and a cold-build-aware
+bounded deadline; the owning H3 profile adds a general audio-state fidelity check.
+Managed copies were synchronized and all eight isolated packages passed offline
+utility/resource smoke checks; both official H3 guide hashes were preserved.
+This is an implemented mitigation, not semantic acceptance. The repaired source
+invalidates unchanged-capture reuse. The user subsequently authorized both
+complete fresh capture suites; all 798 captures completed successfully in a
+fresh frozen wave, with independently matched managed exit 0 and passing offline
+context gates. Separately authorized offline preparation is also complete: all
+411 fresh packets, independent original historical evidence, and all six binding
+gates passed actual preparation/frozen-CLI validation; 90 offline evaluator tests
+passed. The user subsequently authorized the complete paid assessment. It is
+now closed **not accepted**: all 415 judgments were valid (411 initial, three
+fresh adjudications, one separate historical adjudication), but `wild-12`
+attempt 2 omitted the first-event speaker ID and two criteria remain `not-run`.
+Independent managed exit 1 matched exception-free runner finalization; retained
+evidence verification passed with zero errors. No retry or further campaign is
+authorized. See [the current handoff](docs/next-steps.md) for evidence and limits.
+
 
 ## Consolidation provenance
 

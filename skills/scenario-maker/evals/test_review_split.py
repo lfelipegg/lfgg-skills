@@ -1,7 +1,10 @@
 """Offline semantic-review uncertainty, grounding, and three-repetition gates."""
 import copy
 import json
+import os
 from pathlib import Path
+import subprocess
+import sys
 import tempfile
 import unittest
 from unittest import mock
@@ -241,6 +244,56 @@ class AggregationTest(unittest.TestCase):
         summary = review.aggregate(*data)
         self.assertTrue(summary["gates"]["candidate_per_criterion_failures_not_above_baseline"])
         self.assertFalse(summary["gates"]["no_new_candidate_contract_failures"])
+
+
+@unittest.skipUnless(os.name == "posix", "POSIX pipe and executable semantics")
+class ReviewerProcessTest(unittest.TestCase):
+    def test_reviewer_receives_eof_while_parent_stdin_pipe_stays_open(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            executable = root / "bin" / "omp"
+            executable.parent.mkdir()
+            executable.write_text(
+                f"#!{sys.executable}\n"
+                "import os, select, sys\n"
+                "ready, _, _ = select.select([0], [], [], 2)\n"
+                "if not ready or os.read(0, 1) != b'':\n"
+                "    sys.stderr.write('stdin did not receive EOF\\n')\n"
+                "    sys.exit(23)\n"
+                "sys.stderr.write('stdin EOF\\n')\n",
+                encoding="utf-8",
+            )
+            executable.chmod(0o755)
+            (root / "input.json").write_text(json.dumps(packet()), encoding="utf-8")
+            (root / "system.txt").write_text("Offline stdin diagnostic.", encoding="utf-8")
+            (root / "config.json").write_text("{}", encoding="utf-8")
+            runner = (
+                "import json, sys; from pathlib import Path; "
+                "sys.path.insert(0, sys.argv[1]); import review_split as review; "
+                "root = Path(sys.argv[2]); "
+                "result = review.run_reviewer(json.loads((root / 'input.json').read_text()), "
+                "root / 'reviews/test-case/attempt-1', root / 'scratch', "
+                "root / 'system.txt', root / 'config.json', 900); "
+                "print(json.dumps(result['execution']))"
+            )
+            environment = {**os.environ, "PATH": str(executable.parent), "PYTHONDONTWRITEBYTECODE": "1"}
+            # This pipe's writer stays open through both reviewer and runner exit.
+            with subprocess.Popen(
+                [sys.executable, "-c", runner, str(review.EVALS), str(root)],
+                stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE,
+                env=environment,
+            ) as process:
+                try:
+                    process.wait(timeout=10)
+                    output, error = process.stdout.read(), process.stderr.read()
+                finally:
+                    if process.poll() is None:
+                        process.kill()
+                    process.wait()
+                self.assertFalse(process.stdin.closed)
+                self.assertEqual(process.returncode, 0, error.decode())
+                self.assertEqual(json.loads(output), {"status": "completed", "exit_code": 0, "error": None})
+            self.assertEqual((root / "reviews/test-case/attempt-1/stderr.txt").read_text(), "stdin EOF\n")
 
 
 class CaptureEvidenceTest(unittest.TestCase):

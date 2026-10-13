@@ -21,6 +21,8 @@ Native Ref2VA exposes up to nine images, three videos, and three standalone audi
 
 The selected ordinary native templates consume positive conditioning only, with no separate negative-text path. A requested negative intended for that path requires resolving the consumption mismatch; clearly requested standalone negative text remains supported without implying execution support. Audio left unspecified stays `Unspecified`, not silence. The local profile retains reference counters, retention markers, exact anchors, speaker IDs, dialogue/cut serialization, and examples for all four tasks.
 
+Before returning an artifact, the profile's audio fidelity check distinguishes chosen content, explicitly absent content, and layers left unchosen. Limits on invention or reference-property transfer do not imply target silence, an additional-sound prohibition, or absent score. `N/A` retains its declared silence/no-score meaning only when established by resolved intent or a binding lock, including in alternative formats.
+
 The two bundled official guides are conditional references for complex features, not mandatory ordinary-path reads. They retain their recorded bytes and hashes; local route, permission, format, temporal, and audio overrides remain authoritative in the [H3 profile](references/models/minimax-h3.md). Hosted H3/H3-Max, Hailuo, and adjacent native routes do not inherit coverage.
 
 ## What it can do

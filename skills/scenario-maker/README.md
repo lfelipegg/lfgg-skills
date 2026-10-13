@@ -60,7 +60,7 @@ For other models, the skill can write generic image or video prompts, but it doe
 
 Provide inspectable media or sufficiently clear descriptions/transcripts for prompt authoring. Actual generation still needs the correctly connected media. These routes do not cover hosted H3/H3-Max, older Hailuo, or every adjacent native workflow. The ordinary selected native templates consume positive conditioning only, not a separate negative-text field. Reference retention expresses intent, not a fidelity guarantee.
 
-Audio left unspecified remains `Unspecified`, not silence. Explicit formats override section defaults while preserving source roles and temporal meaning. See the [H3 profile](references/models/minimax-h3.md) for examples of all four tasks and native input boundaries.
+Audio left unspecified remains `Unspecified`, not silence. The final H3 fidelity check distinguishes chosen audio, explicitly absent audio, and unchosen layers; constraints on invention or reference transfer do not imply silence or absent score. Explicit formats preserve that distinction, source roles, and temporal meaning. See the [H3 profile](references/models/minimax-h3.md) for examples of all four tasks and native input boundaries.
 
 ## Getting started
 
@@ -258,6 +258,8 @@ collection root, run `python3 scripts/sync_scenario_skills.py`, then
 `python3 scripts/sync_scenario_skills.py --check`. Entry points, READMEs, UI
 metadata, the generic index, tests, and historical evaluation assets are not
 synchronized. Installation never builds or accesses a sibling package.
+
+The shared [Danbooru workflow](references/danbooru-tags.md) accounts for automatic cold-index construction when choosing a bounded command deadline and requires consuming the same lookup's terminal status and hits before evidence-dependent tag finalization. A running handle is not validation; backgrounded commands use the host's wait/follow-up mechanism, not polling or a replacement lookup.
 
 The [collection evaluation instructions](../../README.md#evaluation-tooling)
 separate offline checks, current-monolith/split captures, independent AI migration

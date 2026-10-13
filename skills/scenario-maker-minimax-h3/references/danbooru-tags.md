@@ -20,6 +20,10 @@ The lookup script builds `docs/danbooru_tags/danbooru_tags.sqlite` automatically
 python3 scripts/build_danbooru_index.py --force
 ```
 
+Choose a bounded command deadline that includes automatic cold-index construction, not just the query; allow up to 300 seconds for a first lookup when the host supports it, within the enclosing task deadline. A short query deadline can terminate the initial build before results are available.
+
+Consume the lookup's terminal result and inspect its exit status and returned hits before finalizing tags that depend on that evidence. A running/background handle or a tool-call end is not lookup completion or validation. If the host backgrounds the command, continue independent work, then use its supported wait/follow-up mechanism to receive that same command's terminal result; do not poll or launch another lookup as a substitute. If it fails, times out, or yields no usable result, keep the affected tags unvalidated and follow the output contract's fallback or canonical-only clarification rules; never claim successful validation.
+
 ## Categories
 
 - `0`: general
