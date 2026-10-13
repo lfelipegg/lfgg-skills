@@ -109,6 +109,8 @@ class FrozenBindingsTest(unittest.TestCase):
                         prepare.validate_preparation(out)
 
 
+@unittest.skipUnless((prepare.EVALS / "comparisons/repaired-captures-20261011T214359Z").is_dir(),
+                     "retained capture archive is not present locally")
 class FreshScopeBindingsTest(unittest.TestCase):
     """Consume retained offline evidence, never execute a capture or reviewer."""
     @classmethod

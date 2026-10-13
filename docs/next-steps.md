@@ -8,6 +8,8 @@ Source repair, both complete fresh capture suites, offline assessment preparatio
 
 Read [resource ownership](../README.md#scenario-maker-resource-ownership), [evaluation controls](../README.md#evaluation-tooling), and [prior acceptance scope/outcome](scenario-maker-acceptance-scope.md) before any newly authorized dependent work. The older `skills/scenario-maker/docs/next-steps.md` is historical.
 
+> **2026-10-13:** the local `skills/scenario-maker/evals/comparisons/` archive (E, R, A, P, D, O, C, S, including `approved-plan.md`; ~17 GB, gitignored) was deleted at the user's request. The paths below are historical and no longer resolve; tooling, cases, fixtures, and tests remain.
+
 Paths relative to collection root (filesystem locations, not retained Eval variables):
 
 - **E** = `skills/scenario-maker/evals/comparisons/model-split-20261008T184942Z`.
